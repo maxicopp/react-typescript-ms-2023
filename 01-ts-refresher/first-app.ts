@@ -1,4 +1,5 @@
 let userName = 'Max';
+const API_KEY = '123';
 
 // userName = 95;
 userName = 'Max';
@@ -37,3 +38,8 @@ let hobbies: string[];
 
 hobbies = ['Sports', 'Cooking', 'Reading'];
 // hobbies = [1, 2, 3];
+
+function add(a: number, b: number): number {
+  const result = a + b;
+  return result;
+}
