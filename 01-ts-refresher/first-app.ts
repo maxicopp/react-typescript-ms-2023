@@ -31,3 +31,9 @@ user = {
 };
 
 // user = {};
+
+// let hobbies: Array<string>;
+let hobbies: string[];
+
+hobbies = ['Sports', 'Cooking', 'Reading'];
+// hobbies = [1, 2, 3];
