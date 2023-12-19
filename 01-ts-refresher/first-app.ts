@@ -10,17 +10,22 @@ let isValid = true;
 
 // string, number, boolean
 
-let userID: string | number = 'abc123';
+type StringOrNumber = string | number;
+
+let userID: StringOrNumber = 'abc123';
 userID = 123;
 
 // userID = true;
 // let user: object;
-let user: {
+
+type User = {
   name: string;
   age: number;
   isAdmin: boolean;
   id: string | number;
 };
+
+let user: User;
 
 // user = 'Max';
 
@@ -44,11 +49,9 @@ function add(a: number, b: number): number {
   return result;
 }
 
-function calculate(
-  a: number,
-  b: number,
-  calcFn: (a: number, b: number) => number
-) {
+type AddFn = (a: number, b: number) => number;
+
+function calculate(a: number, b: number, calcFn: AddFn) {
   calcFn(a, b);
 }
 
