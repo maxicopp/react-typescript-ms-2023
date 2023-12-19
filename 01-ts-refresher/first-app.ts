@@ -68,3 +68,14 @@ creds = {
   password: '123',
   email: 'max@me.com',
 };
+
+class AuthCredentials implements Credentials {
+  password: string;
+  email: string;
+  userName: string;
+}
+
+function login(credentials: Credentials) {}
+
+// login(creds);
+login(new AuthCredentials());
