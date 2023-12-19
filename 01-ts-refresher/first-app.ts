@@ -128,3 +128,42 @@ function performAction(action: string | number, role: Role) {
     console.log('Perform admin action');
   }
 }
+
+let roles: Array<Role>;
+
+roles = ['admin', 'user'];
+
+type DataStorage<T> = {
+  storage: T[];
+  add: (data: T) => void;
+};
+
+const textStorage: DataStorage<string> = {
+  storage: ['Max'],
+  add: (data: string) => {
+    textStorage.storage.push(data);
+  },
+};
+
+const userStorage: DataStorage<User> = {
+  storage: [
+    {
+      name: 'Max',
+      age: 27,
+      isAdmin: true,
+      id: 'abc',
+    },
+  ],
+  add: (data: User) => {
+    userStorage.storage.push(data);
+  },
+};
+
+function merge<T, U>(a: T, b: U) {
+  return { ...a, ...b };
+}
+
+const newUser = merge({ name: 'Max' }, { age: 27 });
+
+newUser.age;
+newUser.name;
