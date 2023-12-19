@@ -114,9 +114,17 @@ admin = {
   userName: 'Max',
 };
 
-let role: 'admin' | 'user' | 'editor'; // 'admin' | 'user' | 'editor'
+type Role = 'admin' | 'user' | 'editor';
+
+let role: Role;
 
 role = 'user';
 role = 'admin';
 role = 'editor';
 // role = 'other';
+
+function performAction(action: string | number, role: Role) {
+  if (role === 'admin' && typeof action === 'string') {
+    console.log('Perform admin action');
+  }
+}
