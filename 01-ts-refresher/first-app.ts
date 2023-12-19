@@ -113,3 +113,10 @@ admin = {
   permissions: ['read', 'write'],
   userName: 'Max',
 };
+
+let role: 'admin' | 'user' | 'editor'; // 'admin' | 'user' | 'editor'
+
+role = 'user';
+role = 'admin';
+role = 'editor';
+// role = 'other';
