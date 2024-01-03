@@ -1,14 +1,18 @@
-interface Props {
-  title: string;
-  description: string;
-}
+// interface Props {
+//   title: string;
+//   children: React.ReactNode;
+// }
 
-export default function CourseGoal({ title, description }: Props) {
+type Props = React.PropsWithChildren<{
+  title: string;
+}>;
+
+export default function CourseGoal({ title, children }: Props) {
   return (
     <article>
       <div>
         <h2>{title}</h2>
-        <p>{description}</p>
+        {children}
       </div>
       <button>DELETE</button>
     </article>
