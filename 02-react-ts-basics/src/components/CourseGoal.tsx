@@ -18,3 +18,17 @@ export default function CourseGoal({ title, children }: Props) {
     </article>
   );
 }
+
+// const CourseGoal: React.FC<Props> = ({ title, children }) => {
+//   return (
+//     <article>
+//       <div>
+//         <h2>{title}</h2>
+//         {children}
+//       </div>
+//       <button>DELETE</button>
+//     </article>
+//   );
+// };
+
+// export default CourseGoal;
