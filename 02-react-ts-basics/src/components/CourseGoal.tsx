@@ -4,17 +4,24 @@
 // }
 
 type Props = React.PropsWithChildren<{
+  id: number;
   title: string;
+  onDeleteGoal: (id: number) => void;
 }>;
 
-export default function CourseGoal({ title, children }: Props) {
+export default function CourseGoal({
+  id,
+  title,
+  children,
+  onDeleteGoal,
+}: Props) {
   return (
     <article>
       <div>
         <h2>{title}</h2>
         {children}
       </div>
-      <button>DELETE</button>
+      <button onClick={() => onDeleteGoal(id)}>DELETE</button>
     </article>
   );
 }
