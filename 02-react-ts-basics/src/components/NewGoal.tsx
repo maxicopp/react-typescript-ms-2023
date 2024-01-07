@@ -1,8 +1,15 @@
 export default function NewGoal() {
   function handleSubmit(event: React.FormEvent<HTMLFormElement>) {
     event.preventDefault();
-    console.log('submitted');
+
+    const formData = new FormData(event.currentTarget);
+    const goal = formData.get('goal');
+    const summary = formData.get('summary');
+
+    console.log('Goal:', goal);
+    console.log('Summary:', summary);
   }
+
   return (
     <form onSubmit={handleSubmit}>
       <p>
@@ -14,7 +21,7 @@ export default function NewGoal() {
         <input type="text" name="summary" id="summary" />
       </p>
       <p>
-        <button>Add Goal</button>
+        <button type="submit">Add Goal</button>
       </p>
     </form>
   );
