@@ -1,6 +1,10 @@
 import React, { useRef } from 'react';
 
-export default function NewGoal() {
+type NewGoalProps = {
+  onAddGoal: (enteredGoal: string, enteredSummary: string) => void;
+};
+
+export default function NewGoal({ onAddGoal }: NewGoalProps) {
   const goalRef = useRef<HTMLInputElement>(null);
   const summaryRef = useRef<HTMLInputElement>(null);
 
@@ -10,8 +14,15 @@ export default function NewGoal() {
     const enteredGoal = goalRef.current?.value;
     const enteredSummary = summaryRef.current?.value;
 
-    console.log('Goal:', enteredGoal);
-    console.log('Summary:', enteredSummary);
+    if (!enteredGoal || !enteredSummary) {
+      alert('Please enter a goal and a short summary');
+      return;
+    }
+
+    onAddGoal(enteredGoal, enteredSummary);
+
+    goalRef.current.value = '';
+    summaryRef.current.value = '';
   }
 
   return (
