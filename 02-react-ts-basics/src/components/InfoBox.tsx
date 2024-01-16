@@ -1,9 +1,10 @@
 type InfoBoxProps = {
-  mode: 'hint' | 'warning';
   children: React.ReactNode;
+  mode: 'hint' | 'warning';
+  severity?: 'low' | 'medium' | 'high';
 };
 
-export default function InfoBox({ mode, children }: InfoBoxProps) {
+export default function InfoBox({ mode, children, severity }: InfoBoxProps) {
   if (mode === 'hint') {
     return (
       <aside className="infobox infobox-hint">
@@ -13,7 +14,7 @@ export default function InfoBox({ mode, children }: InfoBoxProps) {
   }
 
   return (
-    <aside className="infobox infobox-warning warning--medium">
+    <aside className={`infobox infobox-warning warning--${severity}`}>
       <h2>Warning</h2>
       <p>{children}</p>
     </aside>
