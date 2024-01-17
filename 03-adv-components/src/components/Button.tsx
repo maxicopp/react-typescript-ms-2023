@@ -1,15 +1,19 @@
-type ButtonProps = {
-  el: 'button';
-} & React.ComponentPropsWithoutRef<'button'>;
+type ButtonProps = React.ComponentPropsWithoutRef<'button'> & {
+  href?: never;
+};
 
-type AnchorProps = {
-  el: 'anchor';
-} & React.ComponentPropsWithoutRef<'a'>;
+type AnchorProps = React.ComponentPropsWithoutRef<'a'> & {
+  href?: string;
+};
 
 type Props = ButtonProps | AnchorProps;
 
+function isAnchorProps(props: Props): props is AnchorProps {
+  return 'href' in props;
+}
+
 export default function Button(props: Props) {
-  if (props.el === 'anchor') {
+  if (isAnchorProps(props)) {
     return <a className="button" {...props}></a>;
   }
   return <button className="button" {...props}></button>;
