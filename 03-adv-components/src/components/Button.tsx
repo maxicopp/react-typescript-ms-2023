@@ -14,7 +14,7 @@ function isAnchorProps(props: Props): props is AnchorProps {
 
 export default function Button(props: Props) {
   if (isAnchorProps(props)) {
-    return <a className="button" {...props}></a>;
+    return <a className="button" {...props} aria-label="Button label"></a>;
   }
   return <button className="button" {...props}></button>;
 }
