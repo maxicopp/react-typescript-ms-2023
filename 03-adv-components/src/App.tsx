@@ -4,9 +4,11 @@ import Container from './components/Container';
 function App() {
   return (
     <main>
-      <Container as="header">
+      <Container as="header" className="header">
         <h1>Vite + React</h1>
-        <Button>Click me</Button>
+      </Container>
+      <Container as={Button} type="button" onClick={() => console.log('click')}>
+        Click me
       </Container>
     </main>
   );
