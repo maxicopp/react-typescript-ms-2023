@@ -1,5 +1,5 @@
 type ErrorMessageProps = {
-  text: string,
+  text: string;
 };
 
 export default function ErrorMessage({ text }: ErrorMessageProps) {
