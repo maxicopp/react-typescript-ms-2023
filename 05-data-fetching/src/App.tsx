@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react';
 import { get } from './util/http';
 import BlogPosts, { type BlogPost } from './components/BlogPosts';
+import ErrorMessage from './components/ErrorMessage';
 import fetchingImg from './assets/data-fetching.png';
 import { z } from 'zod';
 
@@ -19,9 +20,12 @@ type BlogResponse = {
 
 function App() {
   const [fetchedPosts, setFetchedPosts] = useState<BlogPost[]>();
+  const [isFetching, setIsFetching] = useState(false);
+  const [error, setError] = useState<string>();
 
   useEffect(() => {
     async function fetchData() {
+      setIsFetching(true);
       try {
         const rawData = await get<BlogResponse[]>('https://jsonplaceholder.typicode.com/posts');
         const validatedResponse = BlogPostArraySchema.parse(rawData.map(post => ({
@@ -32,19 +36,30 @@ function App() {
         setFetchedPosts(validatedResponse);
       } catch (error) {
         console.error(error);
+        setError((error as Error).message);
+      } finally {
+        setIsFetching(false);
       }
     }
     fetchData();
   }, []);
 
+  function renderContent() {
+    if (error) {
+      return <ErrorMessage text={error} />;
+    } else if (isFetching) {
+      return <p id="loading-fallback">Fetching posts...</p>;
+    } else if (fetchedPosts) {
+      return <BlogPosts posts={fetchedPosts} />;
+    }
+    return null;
+  }
+
   return (
     <main>
       <h1>Data Fetching</h1>
-      <img
-        src={fetchingImg}
-        alt="A depiction of data fetching."
-      />
-      {fetchedPosts && <BlogPosts posts={fetchedPosts} />}
+      <img src={fetchingImg} alt="A depiction of data fetching." />
+      {renderContent()}
     </main>
   );
 }

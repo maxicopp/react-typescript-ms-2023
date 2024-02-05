@@ -8,7 +8,7 @@ type BlogPostsProps = {
   posts: BlogPost[];
 };
 
-export default function BlogPosts({ posts }: BlogPostsProps) {
+export default function BlogPosts({ posts }: Readonly<BlogPostsProps>) {
   return (
     <div id="blog-posts">
       <h1>Blog Posts</h1>
