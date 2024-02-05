@@ -6,7 +6,7 @@ export default function Timers() {
   return (
     <ul>
       {timers.map((timer) => (
-        <li key={timer.name}>
+        <li key={timer.name + Date.now() + Math.random()}>
           <Timer {...timer} />
         </li>
       ))}
