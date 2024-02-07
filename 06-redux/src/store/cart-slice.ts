@@ -7,7 +7,7 @@ type CartItem = {
   quantity: number;
 };
 
-type CartState = {
+export type CartState = {
   items: CartItem[];
 };
 
@@ -49,6 +49,6 @@ const cartSlice = createSlice({
   },
 });
 
-export const cartActions = cartSlice.actions;
+export const { addToCart, removeFromCart } = cartSlice.actions;
 
 export default cartSlice;
